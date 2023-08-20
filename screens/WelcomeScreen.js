@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Image, StyleSheet, Text, Button } from 'react-native';
+import { View, Image, StyleSheet, Text, Button, Pressable } from 'react-native';
 
 const WelcomeScreen = ({ navigation }) => {
   return (
@@ -14,15 +14,9 @@ const WelcomeScreen = ({ navigation }) => {
         </Text>
       </View>
       <View style = {styles.button}>
-        <Button
-          onPress = { () => {
-            navigation.navigate("Subscribe");
-          }}
-          title = "Newsletter"
-          color = "#044004"
-        >
-          Newsletter
-        </Button>
+        <Pressable onPress={ () => navigation.navigate("Subscribe") }>
+          <Text style={styles.button}>Newsletter</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -58,11 +52,16 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   button : {
-    marginLeft: 25,
-    marginRight: 25,
-    display: 'stretch',
+    marginLeft: 24,
+    marginRight: 24,
+    backgroundColor: "#044004",
+    textAlign: 'center',
+    padding: 5,
+    borderRadius: 10,
+    color: "#ffffff",
+    fontSize: 18,
+    fontWeight: "bold",
     alignSelf: 'stretch',
     overflow: 'hidden',
-    borderRadius: 8
   }
 })

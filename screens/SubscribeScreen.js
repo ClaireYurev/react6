@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Image, StyleSheet, Text, TextInput, Alert, Button } from 'react-native';
+import { View, Image, StyleSheet, Text, TextInput, Alert, Button, Pressable } from 'react-native';
 import { validateEmail } from '../utils';
 
 const SubscribeScreen = () => {
@@ -24,18 +24,12 @@ const SubscribeScreen = () => {
           keyboardType = "email-address"
           textContentType = "emailAddress"
         />
-
-        <View style={styles.button}>
-          <Button
-            onPress = { () => {
-              Alert.alert("Thanks for subscribing, stay tuned!");
-            }}
-            title = "Subscribe"
-            color = "#044004"
-            disabled = {!isTheEmailAddressValid}
-          >
-            Subscribe
-          </Button>
+        
+        <View style = {isTheEmailAddressValid ? styles.buttonEnabled : styles.buttonDisabled}>
+          <Pressable onPress={ () => Alert.alert("Thanks for subscribing, stay tuned!") }
+            disabled = {!isTheEmailAddressValid}>
+            <Text style={styles.buttonText}>Newsletter</Text>
+          </Pressable>
         </View>
       </View>
     </View>
@@ -82,13 +76,34 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 8
   },
-  button : {
-    marginLeft: 25,
-    marginRight: 25,
-    display: 'stretch',
+  buttonEnabled : {
+    marginLeft: 24,
+    marginRight: 24,
+    backgroundColor: "#044004",
+    padding: 5,
+    borderRadius: 10,
     alignSelf: 'stretch',
     overflow: 'hidden',
-    borderRadius: 8,
-    height: 38,
+  },
+  buttonDisabled : {
+    marginLeft: 24,
+    marginRight: 24,
+    backgroundColor: "#989898",
+    padding: 5,
+    borderRadius: 10,
+    alignSelf: 'stretch',
+    overflow: 'hidden',
+  },
+  buttonText : {
+    marginLeft: 24,
+    marginRight: 24,
+    textAlign: 'center',
+    padding: 5,
+    borderRadius: 10,
+    color: "#ffffff",
+    fontSize: 18,
+    fontWeight: "bold",
+    alignSelf: 'stretch',
+    overflow: 'hidden',
   }
 })
